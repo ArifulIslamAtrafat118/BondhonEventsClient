@@ -3,6 +3,8 @@ import RootLayout from "../layouts/RootLayout/RootLayout";
 import SignUp from "../pages/Auth/SignUp";
 import SignIn from "../pages/Auth/SignIn";
 import Home from "../pages/Home/Home";
+import CreateUpdateEventPage from "../pages/create-updateEventPage/create-updateEventPage";
+import CreateEvent from "../pages/create-updateEventPage/CreateEvent";
 
 
 export const router = createBrowserRouter(
@@ -26,6 +28,16 @@ export const router = createBrowserRouter(
     
       ],
     },
+    {
+      path:"/event",
+      Component: CreateUpdateEventPage,
+      children:[
+        {
+          path: "/event/create",
+          Component: CreateEvent,
+        }
+      ]
+    }
   ],
   
 );

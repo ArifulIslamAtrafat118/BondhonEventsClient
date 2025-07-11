@@ -156,7 +156,7 @@ const Header = () => {
                   <ul className="text-sm py-2 px-4 text-gray-700 dark:text-gray-200 space-y-2">
                     <li>
                       <NavLink
-                        to="/create-event"
+                        to="event/create"
                         onClick={() => setIsDropdownOpen(false)}
                         className="block px-2 py-1 hover:bg-green-100 dark:hover:bg-green-900 rounded"
                       >
