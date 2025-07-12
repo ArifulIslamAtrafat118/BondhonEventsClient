@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLoaderData, useNavigation } from "react-router";
 import { FaThList, FaTh } from "react-icons/fa";
+import { localTime } from "../utils/timeConvarter";
 
 const UpcomingEvents = () => {
   const events = useLoaderData();
@@ -94,8 +95,8 @@ const UpcomingEvents = () => {
                       <span className="font-medium">{event.eventType}</span>
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
-                      Organizer:{" "}
-                      <span className="font-medium">{event.author?.name}</span>
+                      Date:{" "}
+                      <span className="font-medium">{localTime(event.date)}</span>
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
                       Joined:{" "}
@@ -107,8 +108,8 @@ const UpcomingEvents = () => {
                       {event.description?.slice(0, 80)}...
                     </p>
                     <div className="flex justify-end">
-                      <Link to={`/tip-details/${event._id}`} key={event._id}>
-                        <button className=" text-[#0D9488] border border-[#0D9488] px-4 py-1 rounded hover:bg-[#0D9488] hover:text-white transition">
+                      <Link to={`/event-details/${event._id}`} key={event._id}>
+                        <button className=" text-[#0D9488] border border-[#0D9488] px-4 py-1 rounded hover:bg-[#0D9488] hover:text-white transition cursor-pointer">
                           View Details
                         </button>
                       </Link>
