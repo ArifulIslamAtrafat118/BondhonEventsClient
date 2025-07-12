@@ -43,7 +43,7 @@ const CreateEvent = () => {
       joined: [],
     };
     console.log(eventData)
-    const res = await fetch("http://localhost:4000/garden-tips", {
+    const res = await fetch("http://localhost:4000/create-events", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(eventData),
