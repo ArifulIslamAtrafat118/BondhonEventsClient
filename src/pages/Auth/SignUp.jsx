@@ -13,6 +13,7 @@ import gardenAnim from "../../assets/animations/garden.json";
 import { useAuth } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { errorToast } from "./SignIn";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ const SignUp = () => {
         ? navigate(location?.state?.pathname)
         : navigate("/");
     } catch (error) {
-      alert(error.message);
+      errorToast(error);
     }
   };
 
@@ -69,7 +70,7 @@ const SignUp = () => {
         theme: "colored",
       });
     } catch (error) {
-      alert(error.message);
+      errorToast(error);
     }
   };
 

@@ -6,7 +6,17 @@ import gardenAnim from "../../assets/animations/garden.json";
 import Swal from "sweetalert2";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
-
+export const errorToast = (error) =>
+  toast.error(`${error.message}`, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,20 +32,12 @@ const SignIn = () => {
         text: "Sign-In to Bondhon Events successful.",
         timer: 800,
         title: "Congratulaions!",
+      }).then(() => {
+        location.state ? navigate(location.state) : navigate("/");
       });
-
-      location.state ? navigate(location.state) : navigate("/");
     } catch (error) {
-      toast.error(`${error.message}`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      console.log("console error",error.message);
+      toast.error("Login failed: " + error.message);
     }
   };
 
@@ -54,16 +56,7 @@ const SignIn = () => {
         theme: "colored",
       });
     } catch (error) {
-      toast.error(`${error.message}`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      errorToast(error);
     }
   };
 
@@ -89,7 +82,7 @@ const SignIn = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 rounded bg-white dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600"
+            className="w-full p-2 rounded bg-white dark:bg-gray-700 dark:text-white text-gray-900 border border-gray-300 dark:border-gray-600"
             required
           />
           <input
@@ -97,7 +90,7 @@ const SignIn = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 rounded bg-white dark:bg-gray-700 dark:text-white border border-gray-300 dark:border-gray-600"
+            className="w-full p-2 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600"
             required
           />
           <button

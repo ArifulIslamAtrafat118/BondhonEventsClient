@@ -9,6 +9,9 @@ import UpcomingEvents from "../pages/UpcomingEvents";
 import EventDetails from "../pages/EventDetails";
 import { param } from "framer-motion/client";
 import PrivateRoute from "./PrivateRoute";
+import JoinedEvents from "../pages/JoinedEvents";
+import axios from "axios";
+import ManageEvents from "../pages/ManageEvents";
 
 export const router = createBrowserRouter([
   {
@@ -31,15 +34,38 @@ export const router = createBrowserRouter([
       {
         path: "/event-details/:id",
         loader: async ({ params }) => {
-          const res = await fetch(
-            `http://localhost:4000/event-details/${params.id}`
-          );
-          if(!res.ok) throw new Error("Faild to load event data!");
-          return await res.json();
+          try {
+            const res = await axios.get(
+              `http://localhost:4000/event-details/${params.id}`
+            );
+            return res.data;
+          } catch (error) {
+            throw new Error("Faild to load details Data");
+          }
         },
-        element: (<PrivateRoute>
-          <EventDetails/>
-        </PrivateRoute>)
+        element: (
+          <PrivateRoute>
+            <EventDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/events/joined",
+
+        element: (
+          <PrivateRoute>
+            <JoinedEvents />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/manage-events",
+
+        element: (
+          <PrivateRoute>
+            <ManageEvents/>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/sign-up",

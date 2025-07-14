@@ -36,9 +36,9 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const googleSignIn = () =>{
+  const googleSignIn = () => {
     return signInWithPopup(auth, providerGoogle);
-  }
+  };
   const logout = () => {
     setLoading(true);
     return signOut(auth);

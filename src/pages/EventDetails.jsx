@@ -39,8 +39,8 @@ const EventDetails = () => {
 
   return (
     <section className="py-12 bg-green-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="mb-6">
+      <div className="max-w-4xl mx-auto px-4 ">
+        <div className="mb-6 border-1  border-[#0D9488] rounded dark:border-white">
           <img
             src={event.imageUrl}
             alt={event.title}
@@ -69,7 +69,7 @@ const EventDetails = () => {
               isJoined
                 ? "bg-[#0D9488]  text-white"
                 : "border border-[#0D9488] text-green-600 hover:bg-[#0D9488]  hover:text-white"
-            } font-bold w-full transition`}
+            } font-bold w-full transition cursor-pointer`}
           >
             {isJoined ? "Joined" : "Join"}
           </button>
