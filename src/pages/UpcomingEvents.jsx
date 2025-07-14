@@ -73,9 +73,7 @@ const UpcomingEvents = () => {
         ) : viewMode === "card" ? (
           <CardView filteredEvents={filteredEvents} />
         ) : (
-          {
-            /*Table View */
-          }(<TableView filteredEvents={filteredEvents} />)
+          <TableView filteredEvents={filteredEvents} />
         )}
       </div>
     </section>

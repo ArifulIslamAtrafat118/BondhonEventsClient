@@ -5,13 +5,13 @@ import SignIn from "../pages/Auth/SignIn";
 import Home from "../pages/Home/Home";
 import CreateUpdateEventPage from "../pages/create-updateEventPage/create-updateEventPage";
 import CreateEvent from "../pages/create-updateEventPage/CreateEvent";
-import UpcomingEvents from "../pages/UpcomingEvents";
 import EventDetails from "../pages/EventDetails";
 import { param } from "framer-motion/client";
 import PrivateRoute from "./PrivateRoute";
-import JoinedEvents from "../pages/JoinedEvents";
 import axios from "axios";
 import ManageEvents from "../pages/ManageEvents";
+import UpcomingEvents from "../pages/UpcomingEvents";
+import JoinedEvents from "../pages/JoinedEvents";
 
 export const router = createBrowserRouter([
   {
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
 
         element: (
           <PrivateRoute>
-            <ManageEvents/>
+            <ManageEvents />
           </PrivateRoute>
         ),
       },
