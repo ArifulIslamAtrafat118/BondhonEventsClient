@@ -14,6 +14,7 @@ import { useAuth } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { errorToast } from "./SignIn";
+import useSwalTheme from "../../hooks/useSwalTheme";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,7 @@ const SignUp = () => {
     password: "",
   });
   const { currentUser, signup, googleSignIn } = useAuth();
+  const { SwalTheme } = useSwalTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -43,6 +45,7 @@ const SignUp = () => {
         text: "Your account regester succssful",
         timer: 800,
         draggable: true,
+        ...SwalTheme,
       });
       location?.state?.pathname
         ? navigate(location?.state?.pathname)

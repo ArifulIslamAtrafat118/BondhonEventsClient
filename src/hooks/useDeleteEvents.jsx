@@ -3,10 +3,12 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import useAxiosInterceptor from "./axiosInterceptro";
+import useSwalTheme from "./useSwalTheme";
 
 function useDeleteEvents(removeEvents) {
   const axios = useAxiosInterceptor();
   const { currentUser } = useAuth();
+  const { SwalTheme } = useSwalTheme();
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -16,6 +18,7 @@ function useDeleteEvents(removeEvents) {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
+      ...SwalTheme,
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -33,6 +36,7 @@ function useDeleteEvents(removeEvents) {
               icon: "success",
               draggable: true,
               timer: 800,
+              ...SwalTheme,
             });
           }
         } catch (error) {

@@ -7,13 +7,15 @@ import { BsSun, BsMoon } from "react-icons/bs";
 import { motion, AnimatePresence, convertOffsetToTimes } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
 import { Tooltip } from "react-tooltip";
+import Swal from "sweetalert2";
+import useSwalTheme from "../../hooks/useSwalTheme";
 
 const Header = () => {
   const { currentUser, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const { SwalTheme } = useSwalTheme();
   // Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -42,8 +44,19 @@ const Header = () => {
 
   const toggleTheme = () => setDarkMode(!darkMode);
   const navigate = useNavigate();
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
+    const isDarkMode = document.documentElement.classList.contains("dark");
+
+    Swal.fire({
+      icon: "success",
+      title: "Logged out!",
+      text: "Log in again to get the most out of BondhonEvents.",
+      timer: 1000,
+      timerProgressBar: true,
+      ...SwalTheme,
+    });
+
     navigate("/");
   };
 
