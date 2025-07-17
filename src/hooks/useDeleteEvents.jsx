@@ -31,6 +31,8 @@ function useDeleteEvents(removeEvents) {
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
+              draggable: true,
+              timer: 800,
             });
           }
         } catch (error) {

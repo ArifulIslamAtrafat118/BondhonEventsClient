@@ -12,6 +12,7 @@ import axios from "axios";
 import ManageEvents from "../pages/ManageEvents";
 import UpcomingEvents from "../pages/UpcomingEvents";
 import JoinedEvents from "../pages/JoinedEvents";
+import UpdateEvent from "../pages/create-updateEventPage/UpdateEvent";
 
 export const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
       {
         path: "/event/create",
         Component: CreateEvent,
+      },
+      {
+        path: "/event/update/:id",
+        Component: UpdateEvent,
       },
     ],
   },

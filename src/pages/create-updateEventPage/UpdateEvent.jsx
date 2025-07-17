@@ -1,15 +1,19 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../index.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
+import useAxiosInterceptor from "../../hooks/axiosInterceptro";
+import useEvent from "../../api/useEvent";
 
 const CreateEvent = () => {
+  const [event, setEvent] = useState({});
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-
+  const { id } = useParams();
+  const { loadEvent, loading, updateEvent } = useEvent();
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -19,7 +23,14 @@ const CreateEvent = () => {
     imageUrl: "",
     date: null,
   });
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const eventData = await loadEvent(id);
+      setFormData(eventData);
+    };
+    fetchData();
+  }, []);
+  const axios = useAxiosInterceptor();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -32,8 +43,7 @@ const CreateEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const rawTitle = e.target.title.value;
-    const title = rawTitle.trim(); // remove whitespace from start/end
-
+    const title = rawTitle.trim();
     if (!title || title.length < 6) {
       toast.error(
         "Title is required and must be at least 6 non-space characters."
@@ -42,7 +52,7 @@ const CreateEvent = () => {
     }
     const eventData = {
       ...formData,
-      date: formData.date?.toISOString(),
+      date: formData.date ? new Date(formData.date).toISOString() : null,
       author: {
         uid: currentUser.uid,
         name: currentUser.displayName,
@@ -51,15 +61,9 @@ const CreateEvent = () => {
       },
       joined: [],
     };
-    const res = await fetch("http://localhost:4000/create-events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(eventData),
-    });
+    const res = await updateEvent(id, eventData);
 
-    if (res.ok) {
-      navigate("/manage-events")
-      toast.success("Event created successfully!", { position: "top-center" });
+    if (res.status === 200) {
       setFormData({
         title: "",
         location: "",
@@ -85,7 +89,7 @@ const CreateEvent = () => {
         </button>
 
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-          ➕ Create A New Event
+          Update Your Event
         </h2>
 
         <form
@@ -191,7 +195,7 @@ const CreateEvent = () => {
             type="submit"
             className="md:col-span-2 bg-[#0D9488] dark:bg-[#14B8A6] text-white py-2 px-6 rounded hover:bg-[#409e96] transition cursor-pointer"
           >
-            Submit Event
+            Update Event
           </button>
         </form>
       </div>
