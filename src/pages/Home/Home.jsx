@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Banner from "../../components/Header/Banner/Banner";
 
 function Home() {
  
   return (
     <>
-      <div className="">
-        this is home page..........
-      </div>
+      <Banner/>
     </>
   );
 }
