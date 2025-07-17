@@ -29,6 +29,7 @@ function useEvent() {
 
   const updateEvent = async (id, eventData) => {
     try {
+      setLoading(true);
       const res = await axios.put(
         `/update-events/${id}?email=${currentUser.email}`,
         eventData
@@ -46,6 +47,8 @@ function useEvent() {
       toast.error(
         `${error?.message ? error.message : "Something Went Wrong!"}`
       );
+    }finally{
+      setLoading(false);
     }
   };
   return { loadEvent, loading, updateEvent };

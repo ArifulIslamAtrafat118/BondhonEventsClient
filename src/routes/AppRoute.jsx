@@ -34,16 +34,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/event-details/:id",
-        loader: async ({ params }) => {
-          try {
-            const res = await axios.get(
-              `http://localhost:4000/event-details/${params.id}`
-            );
-            return res.data;
-          } catch (error) {
-            throw new Error("Faild to load details Data");
-          }
-        },
         element: (
           <PrivateRoute>
             <EventDetails />

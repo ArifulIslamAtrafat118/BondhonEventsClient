@@ -2,14 +2,27 @@ import { useLoaderData, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { localTime } from "../utils/timeConvarter";
+import useEvent from "../api/useEvent";
 
 const EventDetails = () => {
-  const initialEventData = useLoaderData();
   const { currentUser } = useAuth();
   const userId = currentUser?.uid;
-  const [event, setEvent] = useState(initialEventData);
-  const [joined, setJoined] = useState(event?.joined || []);
-  const [isJoined, setIsJoined] = useState(() => joined.includes(userId));
+  const [event, setEvent] = useState({});
+  const [joined, setJoined] = useState([]);
+  const [isJoined, setIsJoined] = useState(false);
+  const { id } = useParams();
+  const { loadEvent, loading } = useEvent();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const loadedData = await loadEvent(id);
+      setEvent(loadedData);
+      const joinedUser = loadedData?.joined || [];
+      setJoined(joinedUser);
+      setIsJoined(joinedUser?.includes(userId));
+    };
+    fetchData();
+  }, [id]);
 
   const updateJoinedInDB = async (newJoined) => {
     if (!currentUser.uid) return;
@@ -68,7 +81,7 @@ const EventDetails = () => {
             className={`inline-block px-4 py-2 rounded ${
               isJoined
                 ? "bg-[#0D9488]  text-white"
-                : "border border-[#0D9488] text-green-600 hover:bg-[#0D9488]  hover:text-white"
+                : "border border-[#0D9488] text-[#0D9488] hover:bg-[#0D9488]  hover:text-white"
             } font-bold w-full transition cursor-pointer`}
           >
             {isJoined ? "Joined" : "Join"}
