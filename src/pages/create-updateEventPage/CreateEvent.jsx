@@ -50,6 +50,7 @@ const CreateEvent = () => {
     });
 
     if (res.ok) {
+      navigate("/manage-events")
       toast.success("Event created successfully!", { position: "top-center" });
       setFormData({
         title: "",

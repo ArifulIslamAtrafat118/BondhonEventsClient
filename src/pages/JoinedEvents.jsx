@@ -8,7 +8,6 @@ import LoadingSpinner from "../utils/LoadingSpinner";
 const JoinedEvents = () => {
   const { MyJoinedEvents, loading } = useMyJoinedEvents();
   const filteredEvents = MyJoinedEvents;
-  console.log(filteredEvents);
   const [viewMode, setViewMode] = useState("table");
 
   return (

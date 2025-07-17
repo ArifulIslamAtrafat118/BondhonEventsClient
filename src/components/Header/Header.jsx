@@ -50,7 +50,7 @@ const Header = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Upcoming Events", path: "/events/upcoming" },
-    { name: "Create Event", path: "/create-event" },
+    { name: "Create Event", path: "/event/create" },
     { name: "Manage Events", path: "/manage-events" },
     {
       name: "Joined Events",
@@ -186,7 +186,7 @@ const Header = () => {
                   <div className="border-t border-gray-100 dark:border-gray-700 p-3">
                     <button
                       onClick={handleLogout}
-                      className="flex items-center gap-2 text-sm text-red-600 hover:text-red-800"
+                      className="flex items-center gap-2 text-sm text-red-600 hover:text-red-800 cursor-pointer"
                     >
                       <FiLogOut /> Logout
                     </button>

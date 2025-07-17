@@ -95,14 +95,14 @@ const SignIn = () => {
           />
           <button
             type="submit"
-            className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
+            className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded cursor-pointer"
           >
             Sign In
           </button>
         </form>
         <button
           onClick={handleGoogleSignIn}
-          className="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white py-2 rounded mt-3"
+          className="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white py-2 rounded mt-3 cursor-pointer"
         >
           Sign in with Google
         </button>
