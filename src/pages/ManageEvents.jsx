@@ -5,58 +5,14 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { localTime } from "../utils/timeConvarter";
 import useManageEvents from "../api/useManageEvents";
+import useDeleteEvents from "../hooks/useDeleteEvents";
 
 function ManageEvents() {
-  // const [myEvents, setMyEvents] = useState([]);
-  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { myEvents, loading, errorMessage, removeEvents } = useManageEvents();
+  const {handleDelete} = useDeleteEvents(removeEvents);
 
-  console.log(myEvents, loading, errorMessage);
-
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const res = await fetch(`http://localhost:4000/event/delete/${id}`, {
-            method: "DELETE",
-          });
-
-          if (!res.ok) {
-            throw new Error(`Delete failed with status ${res.status}`);
-          } else {
-            removeEvents(id);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          }
-        } catch (error) {
-          //   console.error("Delete error:", error.message);
-
-          toast.error(error?.message || "Some thing went wrong.", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-        }
-      }
-    });
-  };
+  // console.log(myEvents, loading, errorMessage);
 
   return (
     <section className="py-12 bg-green-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
