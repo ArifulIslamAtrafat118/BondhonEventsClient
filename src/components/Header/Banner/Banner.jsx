@@ -90,10 +90,10 @@ const Banner = () => {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold mb-4">
                   {slide.title}
                 </h2>
-                <p className="text-sm sm:text-md md:text-lg lg:text-2xl mb-6">
+                <p className="text-sm sm:text-md md:text-lg lg:text-2xl mb-9">
                   {slide.subtitle}
                 </p>
-                <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-6 font-light">
+                <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-9 font-light">
                   {slide?.details}
                 </p>
                 <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-6">
