@@ -8,7 +8,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="pt-12 bg-[#1B4332] text-white dark:bg-gray-900 dark:text-gray-200">
+    <footer className="pt-10 lg:pt-12 bg-[#010313]  dark:bg-[#000000de]  text-white dark:text-gray-200">
       <div className="max-w-7xl mx-auto px-4">
         {" "}
         <div className=" flex flex-col items-center gap-5 md:grid md:grid-cols-3  ">

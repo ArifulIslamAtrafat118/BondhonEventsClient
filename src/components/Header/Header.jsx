@@ -74,11 +74,11 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-teal-100 dark:bg-gray-900 shadow-md sticky top-0 z-50 pt-2">
+    <header className="bg-gradient-to-br from-[#155e75]  to-[#0D9488]  dark:from-white/10 dark:to-[#155e75] shadow-md sticky top-0 z-50 pt-2">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link
           to="/"
-          className="text-xl font-bold text-[#0D9488] dark:text-[#14B8A6]"
+          className="text-xl xl:text-3xl font-bold text-[rgb(62,176,147)] dark:text-[#14B8A6]"
         >
           <span>Bondhon Events</span>
         </Link>
@@ -127,7 +127,7 @@ const Header = () => {
           {!currentUser ? (
             <NavLink
               to="/sign-in"
-              className="ml-4 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded"
+              className="ml-4 bg-[#0e4a5a] hover:bg-[#0e4a5ab5] text-white px-4 py-2 rounded"
             >
               SignIn / SignUp
             </NavLink>
@@ -291,7 +291,7 @@ const Header = () => {
               ) : (
                 <NavLink
                   to="/sign-in"
-                  className=" bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded"
+                  className=" bg-[#0e4a5a] hover:bg-green-600 text-white px-4 py-1.5 rounded"
                 >
                   SignIn / SignUp
                 </NavLink>
