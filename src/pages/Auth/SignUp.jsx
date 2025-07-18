@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   getAuth,
@@ -27,6 +27,12 @@ const SignUp = () => {
   const { SwalTheme } = useSwalTheme();
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -69,11 +75,11 @@ const SignUp = () => {
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
-        progress: undefined,
         theme: "colored",
       });
     } catch (error) {
       errorToast(error);
+      console.log(error);
     }
   };
 

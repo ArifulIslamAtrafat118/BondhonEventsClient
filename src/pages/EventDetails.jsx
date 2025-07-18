@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { localTime } from "../utils/timeConvarter";
 import useEvent from "../api/useEvent";
+import useAxiosInterceptor from "../hooks/axiosInterceptro";
 
 const EventDetails = () => {
   const { currentUser } = useAuth();
@@ -12,6 +13,7 @@ const EventDetails = () => {
   const [isJoined, setIsJoined] = useState(false);
   const { id } = useParams();
   const { loadEvent, loading } = useEvent();
+  const axios = useAxiosInterceptor();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,14 +29,11 @@ const EventDetails = () => {
   const updateJoinedInDB = async (newJoined) => {
     if (!currentUser.uid) return;
     try {
-      const res = await fetch(`http://localhost:4000/event/${event._id}/join`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ joined: newJoined }),
-      });
-      if (!res.ok) throw new Error("Failed to update join status");
+      const res = await axios.patch(
+        `/event/${event._id}/join?email=${currentUser.email}`,
+        { joined: newJoined }
+      );
+      if (res.status !== 200) throw new Error("Failed to update join status");
     } catch (error) {
       console.error(error.message);
     }

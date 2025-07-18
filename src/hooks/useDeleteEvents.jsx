@@ -23,7 +23,7 @@ function useDeleteEvents(removeEvents) {
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            `http://localhost:4000/event/delete/${id}?email=${currentUser.email}`
+            `/event/delete/${id}?email=${currentUser.email}`
           );
 
           if (res.status !== 200) {

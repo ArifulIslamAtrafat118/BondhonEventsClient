@@ -13,11 +13,13 @@ import ManageEvents from "../pages/ManageEvents";
 import UpcomingEvents from "../pages/UpcomingEvents";
 import JoinedEvents from "../pages/JoinedEvents";
 import UpdateEvent from "../pages/create-updateEventPage/UpdateEvent";
+import ErrorPage from "../components/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
@@ -26,7 +28,7 @@ export const router = createBrowserRouter([
       {
         path: "/events/upcoming",
         loader: async () => {
-          const res = await fetch("http://localhost:4000/upcoming-events");
+          const res = await fetch("https://bondhon-events.vercel.app/upcoming-events");
           if (!res.ok) throw new Error("Faild to load enents data!");
           return await res.json();
         },

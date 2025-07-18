@@ -8,14 +8,13 @@ import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import useSwalTheme from "../../hooks/useSwalTheme";
 export const errorToast = (error) =>
-  toast.error(`${error.message}`, {
+  toast.error(`${error?.message}`, {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: false,
     pauseOnHover: true,
     draggable: true,
-    progress: undefined,
     theme: "colored",
   });
 const SignIn = () => {
@@ -51,7 +50,6 @@ const SignIn = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      location.state ? navigate(location.state) : navigate("/");
       toast.success("Wellcome to Bondhon Events!", {
         position: "top-center",
         autoClose: 5000,
@@ -62,6 +60,7 @@ const SignIn = () => {
         progress: undefined,
         theme: "colored",
       });
+      location.state ? navigate(location?.state) : navigate('/');
     } catch (error) {
       errorToast(error);
     }

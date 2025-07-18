@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "https://bondhon-events.vercel.app",
 });
 
 const useAxiosInterceptor = () => {

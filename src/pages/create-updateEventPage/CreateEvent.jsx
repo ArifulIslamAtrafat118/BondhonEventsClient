@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
+import useAxiosInterceptor from "../../hooks/axiosInterceptro";
 
 const CreateEvent = () => {
   const { currentUser } = useAuth();
+  const axios = useAxiosInterceptor();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -32,7 +34,7 @@ const CreateEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const rawTitle = e.target.title.value;
-    const title = rawTitle.trim(); // remove whitespace from start/end
+    const title = rawTitle.trim(); 
 
     if (!title || title.length < 6) {
       toast.error(
@@ -51,13 +53,9 @@ const CreateEvent = () => {
       },
       joined: [],
     };
-    const res = await fetch("http://localhost:4000/create-events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(eventData),
-    });
+    const res = await axios.post(`/create-events?email=${currentUser.email}`, eventData);
 
-    if (res.ok) {
+    if (res.status===200) {
       navigate("/manage-events")
       toast.success("Event created successfully!", { position: "top-center" });
       setFormData({
