@@ -24,10 +24,13 @@ const SignIn = () => {
   const { SwalTheme } = useSwalTheme();
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location?.state || "/";
+  const navigateNow = () => {
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 1);
+  };
 
-  useEffect(() => {
-    if (currentUser) navigate(-1 || "/");
-  }, [currentUser]);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -39,11 +42,19 @@ const SignIn = () => {
         title: "Congratulaions!",
         ...SwalTheme,
       }).then(() => {
-        location.state ? navigate(location.state) : navigate("/");
+        navigateNow();
       });
     } catch (error) {
       console.log("console error", error.message);
-      toast.error("Login failed: " + error.message);
+      errorToast(error);
+      // Swal.fire({
+      //   icon: "error",
+      //   title: "Sign-In Faild",
+      //   text: `${error.message}`,
+      //   ...SwalTheme,
+      // }).then(() => {
+      //   navigate("/sign-in");
+      // });
     }
   };
 
@@ -60,7 +71,7 @@ const SignIn = () => {
         progress: undefined,
         theme: "colored",
       });
-      location.state ? navigate(location?.state) : navigate('/');
+      navigateNow();
     } catch (error) {
       errorToast(error);
     }

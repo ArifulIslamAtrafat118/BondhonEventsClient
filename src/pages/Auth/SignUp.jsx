@@ -25,14 +25,16 @@ const SignUp = () => {
   });
   const { currentUser, signup, googleSignIn } = useAuth();
   const { SwalTheme } = useSwalTheme();
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.pathname || "/";
+  console.log(from)
+  const navigateNow = () => {
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 1);
+  };
 
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -53,9 +55,7 @@ const SignUp = () => {
         draggable: true,
         ...SwalTheme,
       });
-      location?.state?.pathname
-        ? navigate(location?.state?.pathname)
-        : navigate("/");
+     navigateNow();
     } catch (error) {
       errorToast(error);
     }
@@ -64,10 +64,6 @@ const SignUp = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      location?.state.pathname
-        ? navigate(location?.state.pathname)
-        : navigate("/");
-
       toast.success("Wellcome to Bondhon Events!", {
         position: "top-center",
         autoClose: 5000,
@@ -77,6 +73,7 @@ const SignUp = () => {
         draggable: true,
         theme: "colored",
       });
+      navigateNow();
     } catch (error) {
       errorToast(error);
       console.log(error);
