@@ -4,34 +4,47 @@ import { FaThList, FaTh } from "react-icons/fa";
 import TableView from "../utils/TableView";
 import CardView from "../utils/CardView";
 import useSearchEvents from "../api/useSearchEvents";
+import { toast } from "react-toastify";
 
 const UpcomingEvents = () => {
   const [loading, setLaoding] = useState(true);
-  const [events, setEvents] = useState(useLoaderData());
+  const [events, setEvents] = useState([]);
   const [searchBy, setSearchBy] = useState("");
+  const [error, setError] = useState("");
   const [filter, setFilter] = useState("All");
   const [viewMode, setViewMode] = useState("card");
   const { search } = useSearchEvents();
 
   useEffect(() => {
-    if (events) {
-      setLaoding(false);
-    }
-  }, [events]);
-
+    const run = async () => {
+      try {
+        const res = await fetch(
+          "https://bondhon-events.vercel.app/upcoming-events"
+        );
+        if (!res.ok) throw new Error("Faild to load events data!");
+        const result = await res.json();
+        setEvents(result);
+      } catch (error) {
+        setError(error.message);
+        toast.error(`${error.message}`);
+      } finally {
+        setLaoding(false);
+      }
+    };
+    run();
+  }, []);
 
   const filteredEvents =
     filter === "All"
       ? events
       : events.filter((event) => event.eventType === filter);
-  const handleSearch = async(e) => {
-    const value = e.target.value
+  const handleSearch = async (e) => {
+    const value = e.target.value;
     setSearchBy(value);
     // console.log(e.target.value);
-    const searchResult =await search(value);
-    setEvents(searchResult)
+    const searchResult = await search(value);
+    setEvents(searchResult);
     console.log(searchResult);
-    
   };
   // console.log(searchBy);
   return (

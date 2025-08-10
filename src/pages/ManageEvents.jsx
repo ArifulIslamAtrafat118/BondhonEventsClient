@@ -36,7 +36,7 @@ function ManageEvents() {
           </p>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {myEvents.map((event) => (
+            {myEvents?.map((event) => (
               <div
                 key={event._id}
                 className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition "

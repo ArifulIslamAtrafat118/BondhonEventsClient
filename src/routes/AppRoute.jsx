@@ -27,11 +27,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/events/upcoming",
-        loader: async () => {
-          const res = await fetch("https://bondhon-events.vercel.app/upcoming-events");
-          if (!res.ok) throw new Error("Faild to load enents data!");
-          return await res.json();
-        },
         Component: UpcomingEvents,
       },
       {
