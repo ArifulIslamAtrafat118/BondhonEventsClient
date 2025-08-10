@@ -1,9 +1,23 @@
 import React from "react";
+import Swal from "sweetalert2";
+import useSwalTheme from "../hooks/useSwalTheme";
 
 function Newsletter() {
+  const { SwalTheme } = useSwalTheme();
+  const handleNewsletter = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      icon: "info",
+      title: "Thanks for subscribing!",
+      text: "You will now receive our newsletter from 'news@bondhonevent.info'.",
+      draggable: true,
+      ...SwalTheme
+    });
+    e.target.reset();
+  };
   return (
     <section className="bg-[#010313] dark:bg-[#000000de] w-full ">
-      <div 
+      <div
         className="relative mx-8 md:mx-10  max-w-7xl xl:mx-auto  
         py-5 md:py-10 lg:py-20 px-6 sm:px-8 md:px-10
         bg-gradient-to-br from-[#0D9488] to-[#155e75] dark:from-white/10 backdrop-blur-xl text-white overflow-hidden rounded-xl shadow-xl  
@@ -22,7 +36,10 @@ function Newsletter() {
             meet-ups, and more.
           </p>
 
-          <form className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <form
+            onSubmit={handleNewsletter}
+            className="flex flex-col sm:flex-row justify-center items-center gap-4"
+          >
             <input
               type="email"
               placeholder="you@example.com"

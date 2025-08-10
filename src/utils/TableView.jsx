@@ -17,7 +17,7 @@ function TableView({ filteredEvents }) {
           </tr>
         </thead>
         <tbody>
-          {filteredEvents.map((event) => (
+          {filteredEvents?.map((event) => (
             <tr key={event._id} className="border-t dark:border-gray-700">
               <td className="px-4 py-2">
                 <img
