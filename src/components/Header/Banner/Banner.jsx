@@ -100,7 +100,7 @@ const Banner = () => {
                   <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-6">
                     {slide?.dateLocation}
                   </p>
-                  <button className="bg-[#0D9488] hover:bg-green-600 transition px-5 py-2 rounded">
+                  <button className="bg-gradient-to-br from-[#0D9488] to-[#155e75] hover:from-white/10 backdrop-blur-xl transition px-5 py-2 rounded">
                     👉 Join Now
                   </button>
                 </div>

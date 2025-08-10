@@ -18,7 +18,7 @@ function FeatureSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+          <div className="featureCard ">
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
               🎯 Easy Event Creation
             </h3>
@@ -29,7 +29,7 @@ function FeatureSection() {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+          <div className="featureCard">
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
               🤝 Volunteer Network
             </h3>
@@ -40,7 +40,7 @@ function FeatureSection() {
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl p-6 hover:scale-105 transition-all duration-300">
+          <div className="featureCard">
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
               🔔 Real-Time Notifications
             </h3>
