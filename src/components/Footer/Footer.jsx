@@ -9,12 +9,12 @@ import { Link } from "react-router";
 const Footer = () => {
   return (
     <footer className="pt-10 lg:pt-12 bg-[#010313]  dark:bg-[#000000de]  text-white dark:text-gray-200">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 lg:px-0 mb-3 lg:mb-5">
         {" "}
         <div className=" flex flex-col items-center gap-5 md:grid md:grid-cols-3  ">
-         <div className="col-span-2 flex justify-between gap-9  md:justify-around">
+         <div className="col-span-2 flex justify-between gap-9 ">
            {/* Contact Info */}
-          <div className="text-start">
+          <div className="text-start space-y-2">
             <h2 className="text-lg font-semibold mb-3">Contact</h2>
             <p>📍 Faridpur, Bangladesh</p>
             <p>📧 support@bondhonevents.com</p>
@@ -45,7 +45,7 @@ const Footer = () => {
 
          </div>
           {/* Social Media */}
-          <div className="flex flex-col items-center justify-center gap-7">
+          <div className="flex flex-col items-end justify-center gap-7">
             <h2 className="text-lg font-semibold mb-3">Follow Us</h2>
             <div className="flex gap-4">
               <a

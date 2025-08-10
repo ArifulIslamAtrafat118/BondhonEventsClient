@@ -86,22 +86,24 @@ const Banner = () => {
               className="h-[75vh] sm:h-[85vh] md:h-[90vh] bg-cover bg-center  text-center "
               style={{ backgroundImage: `url(${slide.image})` }}
             >
-              <div className="bg-black/60 dark:bg-gray-900/60 p-6 sm:p-8 md:p-10  text-white w-full h-full flex items-center lg:items-start justify-center flex-col">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold mb-4">
-                  {slide.title}
-                </h2>
-                <p className="text-sm sm:text-md md:text-lg lg:text-2xl mb-9">
-                  {slide.subtitle}
-                </p>
-                <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-9 font-light">
-                  {slide?.details}
-                </p>
-                <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-6">
-                  {slide?.dateLocation}
-                </p>
-                <button className="bg-[#0D9488] hover:bg-green-600 transition px-5 py-2 rounded">
-                  👉 Join Now
-                </button>
+              <div className="bg-black/60 dark:bg-gray-900/60 p-6 sm:p-8 md:p-10  text-white w-full h-full  ">
+                <div className="max-w-7xl mx-auto h-full flex items-center lg:items-start justify-center flex-col">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold mb-4">
+                    {slide.title}
+                  </h2>
+                  <p className="text-sm sm:text-md md:text-lg lg:text-2xl mb-9">
+                    {slide.subtitle}
+                  </p>
+                  <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-9 font-light">
+                    {slide?.details}
+                  </p>
+                  <p className="text-sm lg:w-[50%] lg:text-start sm:text-md md:text-lg mb-6">
+                    {slide?.dateLocation}
+                  </p>
+                  <button className="bg-[#0D9488] hover:bg-green-600 transition px-5 py-2 rounded">
+                    👉 Join Now
+                  </button>
+                </div>
               </div>
             </div>
           </SwiperSlide>
